@@ -23,8 +23,26 @@
 		[ 'processCommand', 			'',			''			],
 		[ 'GetDeviceCapabilityValue', 	'',			''			],
 		[ 'GetDeviceList', 				'',			''			],
-		[ 'GetGroupCapabilityValue', 	'',			''			]
+		[ 'GetGroupCapabilityValue', 	'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
+		[ '', 							'',			''			],
 		);
+
+
 
 
 print "\n\n";
@@ -74,6 +92,8 @@ while($eachLine = <$fileHandle> ) {
 		$keyword = 					$keyWordArray[$elem]->[0];
 		$printMoreLinesCnt = 		$keyWordArray[$elem]->[1];
 		$conserveOriginalString = 	$keyWordArray[$elem]->[2];
+
+		next if ($keyword eq "");
 
 		# if eachLine contains KeyWord, then handle it. 
 		#    i means: Case insensitive
