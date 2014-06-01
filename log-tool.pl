@@ -1,9 +1,5 @@
 #!/usr/bin/perl
 
-if($#ARGV < 0) 
-{ die "Usage: perl log-tool.pl [log-file-name.txt] \n"; }
-
-
 # Keyword Array Colume Description
 #   1. Keyword: 
 #		- keyword to print out. 
@@ -31,14 +27,23 @@ if($#ARGV < 0)
 		);
 
 
+print "\n\n";
+print "---------------------------------------------------------------------------------\n";
+print "Log analyzer\n";
+print "    Author: Woody Lee, woody.lee@belkin.com, 2014 \n";
+	
+if($#ARGV < 0) 
+{ 
+	print "    Pls input file name: \n";
+	print "    - Print logs to terminal: perl log-tool.pl [log-file-name.txt] \n";
+	print "    - Save logs into file:    perl log-tool.pl [log-file-name.txt] > [save-file-name.txt] \n";
+	print "---------------------------------------------------------------------------------\n";
+	die; 
+}
 
 $logFileName = shift(@ARGV);					# Get log file name from argument
 my $templetFileName = "keyword.tpl";		
 
-print "\n\n\n\n\n";
-print "---------------------------------------------------------------------------------\n";
-print "Log analyzer\n";
-print "    Author: Woody Lee, woody.lee@belkin.com, 2014 \n";
 print "    Log File name: $logFileName\n";
 print "---------------------------------------------------------------------------------\n";
 printf( "%8s | %s\n","Line No", "Logs");
