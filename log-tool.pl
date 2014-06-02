@@ -39,7 +39,7 @@
 print "\n\n";
 print "---------------------------------------------------------------------------------\n";
 print "Log analyzer\n";
-print "    Author: Woody Lee, 2014 \n";
+print "    Author: Woody Lee, woody2097@gmail.com \n";
 	
 if($#ARGV < 0) 
 { 
