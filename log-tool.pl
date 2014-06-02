@@ -3,6 +3,7 @@
 # Keyword Array Colume Description
 #   1. Keyword: 
 #		- keyword to print out. 
+#		- add back slash ("\") for special characters: ^ $ * . ? + [ ] ( ) \ | { } 
 #	2. LineNo: 
 #		- How many lines need to be printed followed by this keyword.
 #		- e.g, 3: 3 lines print more.  
@@ -17,29 +18,25 @@
 		# Keyword						LineNo  	Don'tTouch 		 
 		#								line no  	 
 		#--------------------------------------------------------
-		#[ '\[SD\]', 					'', 		''			], 
-		[ 'zigbee_api', 				'3', 		''			], 
+		[ '\[SD\]', 					'', 		''			], 
+		[ '\[BR\]', 					'', 		''			], 
+		[ 'zigbee_api', 				'1', 		''			], 
 		[ 'UpdateWeeklyCalendar', 		'', 		''			], 
 		[ 'processCommand', 			'',			''			],
 		[ 'GetDeviceCapabilityValue', 	'',			''			],
 		[ 'GetDeviceList', 				'',			''			],
 		[ 'GetGroupCapabilityValue', 	'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
-		[ '', 							'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
+		[ '', 	'',			''			],
 		);
 
 
@@ -76,9 +73,9 @@ open my $fileHandle, "<", $logFileName or die "Cannot open $logFileName. \n";
 # print "There are $#keyWordArray arrays in Keyword array.\n";
 
 my $eachLine;
+my $refinedString;
 
 $printMoreLines = 0;
-
 $lineNumber = 0;
 
 # read each line one by one
@@ -93,7 +90,9 @@ while($eachLine = <$fileHandle> ) {
 		$printMoreLinesCnt = 		$keyWordArray[$elem]->[1];
 		$conserveOriginalString = 	$keyWordArray[$elem]->[2];
 
-		next if ($keyword eq "");
+		if ($keyword eq "") {
+			next;
+		}
 
 		# if eachLine contains KeyWord, then handle it. 
 		#    i means: Case insensitive
@@ -103,12 +102,18 @@ while($eachLine = <$fileHandle> ) {
 				print "$lineNumber | $eachLine";
 			} else {
 				# Get refined string: remove the part of string we don't have interest. 
-				my $refinedString = substr $eachLine, index($eachLine, $keyword);
+				$myindex = index($eachLine, $keyword);
+				# -1 means: No match found. 
+				if($myindex > 0) {
+					$refinedString = substr $eachLine, index($eachLine, $keyword);
+				} else {
+					$refinedString = $eachLine;
+				}
 				printf( "%8d | %s",$lineNumber, $refinedString);
 			}
 
 			# check if there need to print more lines. 
-			if($printMoreLinesCnt > 1 ) {
+			if($printMoreLinesCnt >= 1 ) {
 				$printMoreLines = $printMoreLinesCnt;
 			}
 
