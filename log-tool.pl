@@ -20,13 +20,7 @@
 		#--------------------------------------------------------
 		[ '\[SD\]', 					'', 		''			], 
 		[ '\[BR\]', 					'', 		''			], 
-		[ 'zigbee_api', 				'1', 		''			], 
-		[ 'UpdateWeeklyCalendar', 		'', 		''			], 
-		[ 'processCommand', 			'',			''			],
-		[ 'GetDeviceCapabilityValue', 	'',			''			],
-		[ 'GetDeviceList', 				'',			''			],
-		[ 'GetGroupCapabilityValue', 	'',			''			],
-		[ '', 	'',			''			],
+		[ 'test', 	'',			''			],
 		[ '', 	'',			''			],
 		[ '', 	'',			''			],
 		[ '', 	'',			''			],
@@ -45,7 +39,7 @@
 print "\n\n";
 print "---------------------------------------------------------------------------------\n";
 print "Log analyzer\n";
-print "    Author: Woody Lee, woody.lee@belkin.com, 2014 \n";
+print "    Author: Woody Lee, 2014 \n";
 	
 if($#ARGV < 0) 
 { 
@@ -104,7 +98,7 @@ while($eachLine = <$fileHandle> ) {
 				# Get refined string: remove the part of string we don't have interest. 
 				$myindex = index($eachLine, $keyword);
 				# -1 means: No match found. 
-				if($myindex > 0) {
+				if($myindex >= 0) {
 					$refinedString = substr $eachLine, index($eachLine, $keyword);
 				} else {
 					$refinedString = $eachLine;
